@@ -10,7 +10,7 @@ interface Model {
   paramValues: Params[];
 }
 
-function ParamEditor() {
+const ParamEditor: React.FC = () => {
   const [purpose, setPurpose] = useState("");
   const [length, setLength] = useState("");
   const [total, setTotal] = useState<Model>();
@@ -69,6 +69,6 @@ function ParamEditor() {
       </div>
     </>
   );
-}
+};
 
 export default ParamEditor;
