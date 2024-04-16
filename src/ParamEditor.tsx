@@ -65,7 +65,7 @@ const ParamEditor: React.FC = () => {
       <div>
         <span>{total?.paramValues[0].value} </span>
         <br></br>
-        <span>{total?.paramValues[0].value} </span>
+        <span>{total?.paramValues[1].value} </span>
       </div>
     </>
   );
