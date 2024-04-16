@@ -1,32 +1,59 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 interface Params {
-  paramId: number;
+  id: number;
+  name: string;
+}
+
+interface model {
+  params: number;
   value: string;
 }
 
-interface Model {
-  paramValues: Params[];
+interface Props {
+  params: Params[];
+  model: model[];
 }
-
 const ParamEditor: React.FC = () => {
   const [purpose, setPurpose] = useState("");
-  const [length, setLength] = useState("");
-  const [total, setTotal] = useState<Model>();
+  const [long, setLong] = useState("");
+  const [total, setTotal] = useState({
+    params: [
+      {
+        id: 1,
+        name: "Назначение",
+      },
+      {
+        id: 2,
+        name: "Длина",
+      },
+    ],
+  });
 
   const getModel = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const model: Model = {
-      paramValues: [
+    const model: Props = {
+      params: [
         {
-          paramId: 1,
+          id: 1,
+          name: "Назначение",
+        },
+        {
+          id: 2,
+          name: "Длина",
+        },
+      ],
+
+      model: [
+        {
+          params: 1,
           value: purpose,
         },
         {
-          paramId: 2,
-          value: length,
+          params: 2,
+          value: long,
         },
       ],
     };
@@ -34,27 +61,41 @@ const ParamEditor: React.FC = () => {
     setTotal(model);
   };
 
-  if (total !== undefined) {
-    console.log(total);
-  }
+  console.log(total);
 
   return (
     <>
       <form className="form">
-        <div>
-          <label>Назначение: </label>
+        <div
+          style={{
+            display: "flex",
+            width: "300px",
+            justifyContent: "space-between",
+          }}
+        >
+          <label>{total?.params[0].name}</label>
 
           <input
             type="text"
-            onChange={(e) => setPurpose(e.target.value)}
+            onChange={(e: { target: { value: string } }) =>
+              setPurpose(e.target.value)
+            }
           ></input>
         </div>
-        <div>
-          <label>Длина: </label>
+        <div
+          style={{
+            display: "flex",
+            width: "300px",
+            justifyContent: "space-between",
+          }}
+        >
+          <label>{total?.params[1].name}</label>
 
           <input
             type="text"
-            onChange={(e) => setLength(e.target.value)}
+            onChange={(e: { target: { value: string } }) =>
+              setLong(e.target.value)
+            }
           ></input>
         </div>
         <button type="submit" onClick={getModel}>
@@ -62,11 +103,12 @@ const ParamEditor: React.FC = () => {
         </button>
       </form>
 
+      {/*
       <div>
         <span>{total?.paramValues[0].value} </span>
         <br></br>
         <span>{total?.paramValues[1].value} </span>
-      </div>
+      </div>*/}
     </>
   );
 };
