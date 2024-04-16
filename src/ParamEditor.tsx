@@ -65,7 +65,7 @@ const ParamEditor: React.FC = () => {
 
   return (
     <>
-      <form className="form">
+      <form onSubmit={getModel}>
         <div
           style={{
             display: "flex",
@@ -98,9 +98,7 @@ const ParamEditor: React.FC = () => {
             }
           ></input>
         </div>
-        <button type="submit" onClick={getModel}>
-          Отправить
-        </button>
+        <button type="submit">Отправить</button>
       </form>
 
       {/*
